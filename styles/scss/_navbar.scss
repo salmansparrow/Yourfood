@@ -1,0 +1,47 @@
+.navimage {
+  height: 5rem;
+  width: 5rem;
+  // margin-right: 20px;
+}
+
+@media screen and (min-width: 1200px) {
+  .navbar {
+    padding: 2rem 10rem;
+  }
+}
+
+.navbar-brand {
+  color: #fff;
+  &:hover,
+  &:active {
+    /* No space between & and :hover */
+    // background: linear-gradient(90deg, #ff8a05, #f9b331);
+    background: $c1;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 18px rgb(248, 190, 42, 0.8);
+  }
+}
+.nav-link {
+  color: #fff !important;
+  margin-right: 5rem;
+  font-size: 1.25rem;
+
+  &:hover {
+    /* No space between & and :hover */
+    background: $c1;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 18px rgb(248, 190, 42, 0.8);
+  }
+}
+
+.active {
+  background: $c1;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 18px rgb(248, 190, 42, 0.8);
+}
