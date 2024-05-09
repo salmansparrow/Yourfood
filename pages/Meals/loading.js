@@ -1,4 +1,5 @@
 import Layout from "@/components/Layouts/Layout";
+import { Suspense } from "react";
 
 function LoadingPage() {
   return (

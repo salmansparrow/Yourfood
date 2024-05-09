@@ -8,7 +8,13 @@ function MealsItems({ title, slug, image, summary, creator }) {
       <div className="col-12 col-md-10 mb-4 ">
         <article className="meal">
           <div className="image">
-            <Image src={image} alt={title} fill />
+            <Image
+              src={image}
+              alt={title}
+              priority
+              fill
+              sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw" // Defines different sizes for breakpoints
+            />
           </div>
           <div className="content">
             <header>
