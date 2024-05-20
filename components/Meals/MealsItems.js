@@ -5,7 +5,7 @@ import Image from "next/image";
 function MealsItems({ title, slug, image, summary, creator }) {
   return (
     <>
-      <div className="col-12 col-md-10 mb-4 ">
+      <div className="col-12 col-md-10 mb-4 mealsitems">
         <article className="meal">
           <div className="image">
             <Image
