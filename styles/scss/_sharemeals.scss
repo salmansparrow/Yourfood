@@ -1,0 +1,128 @@
+.smheader {
+  gap: 3rem;
+  margin: 3rem auto 5rem auto;
+  width: 90%;
+  max-width: 75rem;
+  color: #ddd6cb;
+  font-size: 1.5rem;
+}
+
+.smheader h1 {
+  font-family: "Montserrat", sans-serif;
+}
+
+.smhighlight {
+  background: linear-gradient(90deg, #f9572a, #ff8a05);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.smmain {
+  width: 90%;
+  max-width: 75rem;
+  margin: 3rem auto;
+  color: white;
+}
+
+.smform {
+  max-width: 50rem;
+}
+/* Media queries for small screens */
+@media (max-width: 768px) {
+  .smheader {
+    text-align: center;
+    margin: 2rem auto;
+  }
+
+  .smmain {
+    margin: 2rem auto;
+  }
+
+  .smform {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .smheader {
+    max-width: 80%;
+    margin: 3rem auto 5rem auto;
+  }
+
+  .smmain {
+    max-width: 80%;
+    margin: 3rem auto;
+  }
+
+  .smform {
+    max-width: 50%;
+  }
+}
+.smform label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  color: #b3aea5;
+  font-weight: bold;
+}
+
+.smform input,
+.smform textarea {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #454952;
+  background: #1c2027;
+  font-size: 1.25rem;
+  font-family: "Montserrat", sans-serif;
+  color: #ddd6cb;
+}
+
+.smform input:focus,
+.smform textarea:focus {
+  outline-color: #f99f2a;
+  background-color: #1f252d;
+}
+
+.smrow {
+  display: flex;
+  gap: 1rem;
+}
+
+.smrow p {
+  width: 100%;
+}
+
+.smactions {
+  text-align: right;
+}
+
+.smactions button {
+  border: 0;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(90deg, #f9572a, #ff9b05);
+  border: none;
+  color: #ffffff;
+  border-radius: 2px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.25rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.smactions button:hover,
+.smactions button:focus {
+  background: linear-gradient(90deg, #fd4715, #f9b241);
+}
+
+.smactions button:disabled,
+.smactions button:hover:disabled,
+.smactions button:focus:disabled {
+  background: #ccc;
+  color: #979797;
+  cursor: not-allowed;
+}

@@ -81,7 +81,7 @@ function MealsPage(props) {
             fun!
           </p>
           <p className="cta">
-            <Link href="/meals/share">Share Your Favorite Recipe</Link>
+            <Link href="/Meals/Share">Share Your Favorite Recipe</Link>
           </p>
         </header>
         <main className=" mt-4">

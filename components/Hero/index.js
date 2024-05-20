@@ -14,8 +14,8 @@ function HeroPage() {
             <h1>NEXTLEVEL FOOD FOR NEXTLEVEL FOODIES</h1>
             <p>Taste & share food from all over the world.</p>
             <div className="hero-cat">
-              <Link href="/community">Join The Community</Link>
-              <Link href="/meals">Explore Meals</Link>
+              <Link href="/Community">Join The Community</Link>
+              <Link href="/Meals">Explore Meals</Link>
             </div>
           </div>
 
