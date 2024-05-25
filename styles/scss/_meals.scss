@@ -49,13 +49,25 @@
   width: 90%;
   max-width: 90rem;
   display: grid;
-  // grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   grid-template-columns: repeat(3, minmax(25rem, 1fr));
   grid-gap: 2rem 0;
-  // margin: 2rem auto;
   list-style: none;
   padding: 0;
   text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .mealsgrid {
+    grid-template-columns: repeat(2, minmax(20rem, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .mealsgrid {
+    grid-template-columns: repeat(1, minmax(100%, 1fr));
+    padding-left: 1rem; /* Add padding to the left side */
+    padding-right: 1rem; /* Add padding to the right side for symmetry */
+  }
 }
 
 .meal {
