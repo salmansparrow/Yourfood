@@ -5,7 +5,7 @@ import dumplingsImg from "@/public/images/dumplings.jpg";
 import macncheeseImg from "@/public/images/macncheese.jpg";
 import pizzaImg from "@/public/images/pizza.jpg";
 import schnitzelImg from "@/public/images/schnitzel.jpg";
-import tomatoSaladImg from "@/public/images/tomato-Salad.jpg";
+import tomatoSaladImg from "@/public/images/tomato-salad.jpg";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
