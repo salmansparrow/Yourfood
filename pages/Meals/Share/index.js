@@ -1,5 +1,6 @@
 import Layout from "@/components/Layouts/Layout";
 import ImagePicker from "@/components/Meals/ImagePicker";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 function SharePage() {
@@ -12,6 +13,10 @@ function SharePage() {
     image: "",
   });
 
+  const router = useRouter();
+
+  const [isSubmitting, setisSubmitting] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -19,6 +24,7 @@ function SharePage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setisSubmitting(true);
     try {
       const response = await fetch("/api/sharemeal", {
         method: "POST",
@@ -30,6 +36,13 @@ function SharePage() {
 
       if (!response.ok) {
         throw new Error("Failed to share meal data");
+      }
+
+      const data = await response.json();
+      if (data.success) {
+        router.push("/Meals");
+      } else {
+        console.error("Failed to share meal data");
       }
 
       console.log("Meal shared successfully!");
@@ -44,6 +57,8 @@ function SharePage() {
       });
     } catch (error) {
       console.error(error);
+    } finally {
+      setisSubmitting(false);
     }
   };
 
@@ -122,7 +137,9 @@ function SharePage() {
             onChange={handleChange}
           />
           <p className="smactions mt-3">
-            <button type="submit">Share Meal</button>
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "Share Meal"}
+            </button>
           </p>
         </form>
       </main>

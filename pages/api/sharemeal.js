@@ -9,6 +9,8 @@ export const config = {
   },
 };
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export default async function handler(req, res) {
   if (req.method === "POST") {
     let { name, email, title, summary, instructions, image } = req.body;
@@ -49,10 +51,9 @@ export default async function handler(req, res) {
       console.log(`A row has been inserted with values: ${values}`);
       console.log(`Last inserted row ID: ${result.lastInsertRowid}`);
 
-      res.status(200).json({
-        message: "Meal shared successfully",
-        id: result.lastInsertRowid,
-      });
+      await delay(2000);
+
+      res.status(200).json({ success: true });
     } catch (err) {
       console.error("Database insertion error:", err.message);
       res.status(500).json({ error: "Failed to share meal" });

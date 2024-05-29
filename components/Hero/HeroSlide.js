@@ -40,7 +40,8 @@ function HeroSlide() {
             key={index}
             src={img.image}
             alt={img.alt}
-            layout="fill" // Fills the container
+            fill // Fills the container
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Define sizes for different viewports
             priority={index === currentImage} // Priority for the active image
             className={index === currentImage ? "active" : ""} // Active class
           />
