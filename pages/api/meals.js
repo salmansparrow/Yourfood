@@ -5,6 +5,7 @@ export default async function handler(req, res) {
   res.json({ meals });
   console.log(req.meals);
 }
+
 // if (req.method.toUpperCase() === "GET") {
 //   const meals = await getMeals();
 //   res.status(2000).json({ meals });

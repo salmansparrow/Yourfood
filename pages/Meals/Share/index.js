@@ -1,7 +1,13 @@
 import Layout from "@/components/Layouts/Layout";
 import ImagePicker from "@/components/Meals/ImagePicker";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const isValidText = (text) =>
+  typeof text === "string" && text.trim().length > 0;
+const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const isValidBase64Image = (image) =>
+  /^data:image\/(png|jpeg|jpg|gif);base64,[A-Za-z0-9+/=]+$/.test(image);
 
 function SharePage() {
   const [formData, setFormData] = useState({
@@ -14,16 +20,37 @@ function SharePage() {
   });
 
   const router = useRouter();
-
+  const [errors, setErrors] = useState({});
   const [isSubmitting, setisSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+  };
+
+  const validateForm = (data) => {
+    const newErrors = {};
+
+    if (!isValidText(data.name)) newErrors.name = "Name is required";
+    if (!isValidEmail(data.email)) newErrors.email = "Valid email is required";
+    if (!isValidText(data.title)) newErrors.title = "Title is required";
+    if (!isValidText(data.summary)) newErrors.summary = "Summary is required";
+    if (!isValidText(data.instructions))
+      newErrors.instructions = "Instructions are required";
+    if (!isValidBase64Image(data.image))
+      newErrors.image = "Valid image is required";
+
+    return newErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const newErrors = validateForm(formData);
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
     setisSubmitting(true);
     try {
       const response = await fetch("/api/sharemeal", {
@@ -39,6 +66,7 @@ function SharePage() {
       }
 
       const data = await response.json();
+
       if (data.success) {
         router.push("/Meals");
       } else {
@@ -81,8 +109,9 @@ function SharePage() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                required
+                // required
               />
+              {errors.name && <span className="error">{errors.name}</span>}
             </p>
             <p>
               <label htmlFor="email">Your email</label>
@@ -92,8 +121,9 @@ function SharePage() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                required
+                // required
               />
+              {errors.email && <span className="error">{errors.email}</span>}
             </p>
           </div>
           <p>
@@ -104,8 +134,9 @@ function SharePage() {
               name="title"
               value={formData.title}
               onChange={handleChange}
-              required
+              // required
             />
+            {errors.title && <span className="error">{errors.title}</span>}
           </p>
           <p>
             <label htmlFor="summary">Short Summary</label>
@@ -115,8 +146,9 @@ function SharePage() {
               name="summary"
               value={formData.summary}
               onChange={handleChange}
-              required
+              // required
             />
+            {errors.summary && <span className="error">{errors.summary}</span>}
           </p>
           <p>
             <label htmlFor="instructions">Instructions</label>
@@ -126,8 +158,11 @@ function SharePage() {
               rows="10"
               value={formData.instructions}
               onChange={handleChange}
-              required
+              // required
             ></textarea>
+            {errors.instructions && (
+              <span className="error">{errors.instructions}</span>
+            )}
           </p>
           <ImagePicker
             label="your image"
@@ -136,6 +171,7 @@ function SharePage() {
             value={formData.image}
             onChange={handleChange}
           />
+          {errors.image && <span className="error">{errors.image}</span>}
           <p className="smactions mt-3">
             <button type="submit" disabled={isSubmitting}>
               {isSubmitting ? "Submitting..." : "Share Meal"}

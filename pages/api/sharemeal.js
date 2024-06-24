@@ -53,7 +53,8 @@ export default async function handler(req, res) {
 
       await delay(2000);
 
-      res.status(200).json({ success: true });
+      // res.status(200).json({ success: true });
+      res.status(200).json({ success: true, image: values[3] }); // Return image path
     } catch (err) {
       console.error("Database insertion error:", err.message);
       res.status(500).json({ error: "Failed to share meal" });

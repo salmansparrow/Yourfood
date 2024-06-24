@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 function ImagePicker({ label, name, value, onChange }) {
-  const [pickedImage, setPickedImage] = useState(value);
+  // const [pickedImage, setPickedImage] = useState(value);
   const imageInput = useRef();
 
   function handlePickClick() {
@@ -45,7 +45,6 @@ function ImagePicker({ label, name, value, onChange }) {
             name={name}
             ref={imageInput}
             onChange={handleImageChange}
-            required
           />
           <button className="button" type="button" onClick={handlePickClick}>
             Pick an Image

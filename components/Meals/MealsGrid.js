@@ -19,13 +19,9 @@ function MealsGrid({ meals }) {
     <>
       <div className="row ">
         <ul className="mealsgrid">
-          {" "}
-          {/* Applying the grid class to the unordered list */}
           {meals.map((meal) => (
             <li key={meal.id}>
-              {" "}
-              {/* Each meal is wrapped in a list item */}
-              <MealsItems {...meal} /> {/* Individual meal items */}
+              <MealsItems {...meal} />
             </li>
           ))}
         </ul>

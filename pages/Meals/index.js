@@ -30,11 +30,7 @@ function MealsPage({ meals }) {
       <HeaderPage />
 
       <div className="container mt-4">
-        {" "}
-        {/* Bootstrap container for responsive grid */}
         <header className="header">
-          {" "}
-          {/* Center-align text */}
           <h1>
             Delicious meals, created <span className="highlight">by you</span>
           </h1>
@@ -47,11 +43,7 @@ function MealsPage({ meals }) {
           </p>
         </header>
         <main className=" mt-4">
-          {" "}
-          {/* Add top margin for separation */}
-          {/* <Suspense fallback={<p className="loading">Fetching meals...</p>}> */}
           <MealsGrid meals={meals} />
-          {/* </Suspense> */}
         </main>
       </div>
     </>

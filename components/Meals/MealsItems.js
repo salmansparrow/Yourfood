@@ -2,18 +2,28 @@ import Link from "next/link";
 import Image from "next/image";
 // import { getMeals } from "@/lib/meals";
 
+// Utility function to ensure the image path starts with a leading slash
+// function validateImagePath(imagePath) {
+//   if (!imagePath.startsWith("/")) {
+//     return `/${imagePath}`;
+//   }
+//   return imagePath;
+// }
+
 function MealsItems({ title, slug, image, summary, creator }) {
+  // const validImagePath = validateImagePath(image);
+
   return (
     <>
       <div className="col-12 col-md-10 mb-4 mealsitems ">
         <article className="meal">
           <div className="image">
             <Image
-              src={image}
+              src={image.startsWith("/") ? image : `/${image}`} // Ensure leading slash
               alt={title}
               priority
               fill
-              sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw" // Defines different sizes for breakpoints
+              sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
           <div className="content">
