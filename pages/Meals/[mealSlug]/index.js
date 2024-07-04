@@ -2,23 +2,40 @@ import Layout from "@/components/Layouts/Layout";
 import { getMeal } from "@/lib/meals";
 import Image from "next/image";
 import Error from "./error";
+import Meta from "@/components/common/Meta";
+// import { notFound } from "next/navigation";
 
 export const getServerSideProps = async (context) => {
   const { mealSlug } = context.params;
-  const meal = getMeal(mealSlug);
 
-  if (!meal) {
+  // if (!meal) {
+  //   return {
+  //     props: {
+  //       error: "Meal not found",
+  //     },
+  //   };
+  // }
+
+  try {
+    const meal = await getMeal(mealSlug);
+
+    if (!meal) {
+      return {
+        notFound: true,
+      };
+    }
+    meal.instructions = meal.instructions.replace(/\n/g, "<br/>");
+    return {
+      props: { meal },
+    };
+  } catch (error) {
+    console.error("Error fetching meal:", error);
     return {
       props: {
-        error: "Meal not found",
+        error: "Failed to fetch meal",
       },
     };
   }
-  meal.instructions = meal.instructions.replace(/\n/g, "<br/>");
-
-  return {
-    props: { meal },
-  };
 };
 
 function MealDetailsPage({ meal, error }) {
@@ -32,6 +49,12 @@ function MealDetailsPage({ meal, error }) {
 
   return (
     <>
+      <Meta
+        title={meal.title}
+        keywords={`recipe, ${meal.title}, ${meal.creator}`} // Customize keywords as needed
+        description={meal.summary} // Use meal summary for description
+      />
+
       <Layout>
         <section className="mdheader">
           <div className="mdimage">

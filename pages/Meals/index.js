@@ -1,10 +1,8 @@
 import MealsGrid from "@/components/Meals/MealsGrid";
-
 import HeaderPage from "@/components/common/Header";
-
 import Link from "next/link";
-
 import LoadingPage from "./loading";
+import Meta from "@/components/common/Meta";
 
 // This function gets data from the server before rendering the page
 export const getServerSideProps = async () => {
@@ -27,6 +25,8 @@ function MealsPage({ meals }) {
 
   return (
     <>
+      <Meta title={"All Meals"} />
+
       <HeaderPage />
 
       <div className="container mt-4">

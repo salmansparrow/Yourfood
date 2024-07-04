@@ -1,5 +1,6 @@
 import Layout from "@/components/Layouts/Layout";
 import ImagePicker from "@/components/Meals/ImagePicker";
+import Meta from "@/components/common/Meta";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -91,95 +92,101 @@ function SharePage() {
   };
 
   return (
-    <Layout>
-      <header className="smheader">
-        <h1>
-          Share your <span className="smhighlight">favorite meal</span>
-        </h1>
-        <p>Or any other meal you feel needs sharing!</p>
-      </header>
-      <main className="smmain">
-        <form className="smform" onSubmit={handleSubmit}>
-          <div className="smrow">
+    <>
+      <Meta title={"Share Meals"} />
+
+      <Layout>
+        <header className="smheader">
+          <h1>
+            Share your <span className="smhighlight">favorite meal</span>
+          </h1>
+          <p>Or any other meal you feel needs sharing!</p>
+        </header>
+        <main className="smmain">
+          <form className="smform" onSubmit={handleSubmit}>
+            <div className="smrow">
+              <p>
+                <label htmlFor="name">Your name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  // required
+                />
+                {errors.name && <span className="error">{errors.name}</span>}
+              </p>
+              <p>
+                <label htmlFor="email">Your email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  // required
+                />
+                {errors.email && <span className="error">{errors.email}</span>}
+              </p>
+            </div>
             <p>
-              <label htmlFor="name">Your name</label>
+              <label htmlFor="title">Title</label>
               <input
                 type="text"
-                id="name"
-                name="name"
-                value={formData.name}
+                id="title"
+                name="title"
+                value={formData.title}
                 onChange={handleChange}
                 // required
               />
-              {errors.name && <span className="error">{errors.name}</span>}
+              {errors.title && <span className="error">{errors.title}</span>}
             </p>
             <p>
-              <label htmlFor="email">Your email</label>
+              <label htmlFor="summary">Short Summary</label>
               <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
+                type="text"
+                id="summary"
+                name="summary"
+                value={formData.summary}
                 onChange={handleChange}
                 // required
               />
-              {errors.email && <span className="error">{errors.email}</span>}
+              {errors.summary && (
+                <span className="error">{errors.summary}</span>
+              )}
             </p>
-          </div>
-          <p>
-            <label htmlFor="title">Title</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={formData.title}
+            <p>
+              <label htmlFor="instructions">Instructions</label>
+              <textarea
+                id="instructions"
+                name="instructions"
+                rows="10"
+                value={formData.instructions}
+                onChange={handleChange}
+                // required
+              ></textarea>
+              {errors.instructions && (
+                <span className="error">{errors.instructions}</span>
+              )}
+            </p>
+            <ImagePicker
+              label="your image"
+              name="image"
+              id="image"
+              value={formData.image}
               onChange={handleChange}
-              // required
             />
-            {errors.title && <span className="error">{errors.title}</span>}
-          </p>
-          <p>
-            <label htmlFor="summary">Short Summary</label>
-            <input
-              type="text"
-              id="summary"
-              name="summary"
-              value={formData.summary}
-              onChange={handleChange}
-              // required
-            />
-            {errors.summary && <span className="error">{errors.summary}</span>}
-          </p>
-          <p>
-            <label htmlFor="instructions">Instructions</label>
-            <textarea
-              id="instructions"
-              name="instructions"
-              rows="10"
-              value={formData.instructions}
-              onChange={handleChange}
-              // required
-            ></textarea>
-            {errors.instructions && (
-              <span className="error">{errors.instructions}</span>
-            )}
-          </p>
-          <ImagePicker
-            label="your image"
-            name="image"
-            id="image"
-            value={formData.image}
-            onChange={handleChange}
-          />
-          {errors.image && <span className="error">{errors.image}</span>}
-          <p className="smactions mt-3">
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Submitting..." : "Share Meal"}
-            </button>
-          </p>
-        </form>
-      </main>
-    </Layout>
+            {errors.image && <span className="error">{errors.image}</span>}
+            <p className="smactions mt-3">
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Submitting..." : "Share Meal"}
+              </button>
+            </p>
+          </form>
+        </main>
+      </Layout>
+    </>
   );
 }
 

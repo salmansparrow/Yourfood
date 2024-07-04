@@ -19,7 +19,8 @@ function MealsItems({ title, slug, image, summary, creator }) {
         <article className="meal">
           <div className="image">
             <Image
-              src={image.startsWith("/") ? image : `/${image}`} // Ensure leading slash
+              // src={image.startsWith("/") ? image : `/${image}`} // Ensure leading slash
+              src={image} // Ensure leading slash
               alt={title}
               priority
               fill

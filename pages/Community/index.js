@@ -3,10 +3,12 @@ import Image from "next/image";
 import mealIcon from "@/public/icons/meal.png";
 import communityIcon from "@/public/icons/community.png";
 import eventIcon from "@/public/icons/events.png";
+import Meta from "@/components/common/Meta";
 
 function CommunityPage() {
   return (
     <>
+      <Meta title={"Community"} />
       <Layout>
         <div className="container text-center mt-lg-5 community-header">
           {" "}

@@ -20,7 +20,7 @@ function MealsGrid({ meals }) {
       <div className="row ">
         <ul className="mealsgrid">
           {meals.map((meal) => (
-            <li key={meal.id}>
+            <li key={meal._id}>
               <MealsItems {...meal} />
             </li>
           ))}
