@@ -14,6 +14,7 @@
 import { ConnectToDataBase } from "@/lib/mongodb";
 
 export default async function handler(req, res) {
+  console.log("a");
   if (req.method === "GET") {
     const { page = 1, pageSize = 10 } = req.query;
 
