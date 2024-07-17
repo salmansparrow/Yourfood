@@ -6,10 +6,13 @@ import Meta from "@/components/common/Meta";
 
 // This function gets data from the server before rendering the page
 export const getServerSideProps = async () => {
-  const response = await fetch(`${process.env.SERVER_URL}api/meals`);
+  // const response = await fetch(`${process.env.SERVER_URL}api/meals`);
+  const response = await fetch(
+    `https://yourfood-nftafgbrk-salmank7s-projects-50d39efc.vercel.app/api/Meals`
+  );
 
   if (response.status !== 200) {
-    // throw new Error("Error retrieving meals");
+    throw new Error("Error retrieving meals");
   }
 
   const data = await response.json();
