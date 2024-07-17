@@ -6,6 +6,8 @@ import Meta from "@/components/common/Meta";
 
 // This function gets data from the server before rendering the page
 export const getServerSideProps = async () => {
+  // const response = await fetch(`${process.env.SERVER_URL}api/meals`);
+
   const response = await fetch(`${process.env.SERVER_URL}api/meals`);
 
   if (response.status !== 200) {
