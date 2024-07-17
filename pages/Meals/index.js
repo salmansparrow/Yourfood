@@ -9,7 +9,7 @@ export const getServerSideProps = async () => {
   const response = await fetch(`${process.env.SERVER_URL}api/meals`);
 
   if (response.status !== 200) {
-    throw new Error("Error retrieving meals");
+    // throw new Error("Error retrieving meals");
   }
 
   const data = await response.json();
