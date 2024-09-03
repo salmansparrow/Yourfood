@@ -7,8 +7,6 @@ import { useEffect, useState } from "react";
 const isValidText = (text) =>
   typeof text === "string" && text.trim().length > 0;
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-const isValidBase64Image = (image) =>
-  /^data:image\/(png|jpeg|jpg|gif);base64,[A-Za-z0-9+/=]+$/.test(image);
 
 function SharePage() {
   const [formData, setFormData] = useState({
@@ -39,8 +37,7 @@ function SharePage() {
     if (!isValidText(data.summary)) newErrors.summary = "Summary is required";
     if (!isValidText(data.instructions))
       newErrors.instructions = "Instructions are required";
-    if (!isValidBase64Image(data.image))
-      newErrors.image = "Valid image is required";
+    if (!data.image) newErrors.image = "Valid image is required"; // No base64 validation
 
     return newErrors;
   };
@@ -176,6 +173,7 @@ function SharePage() {
               id="image"
               value={formData.image}
               onChange={handleChange}
+              filename={formData.title.replace(/\s+/g, "-") + ".jpg"} // Use meal title as filename
             />
             {errors.image && <span className="error">{errors.image}</span>}
             <p className="smactions mt-3">

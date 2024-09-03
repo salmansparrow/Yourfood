@@ -3,8 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {
     serverActions: {
-      bodySizeLimit: "2mb",
+      bodySizeLimit: "10mb",
     },
+  },
+  images: {
+    domains: ["firebasestorage.googleapis.com"], // Add Firebase Storage domain here
   },
 };
 
