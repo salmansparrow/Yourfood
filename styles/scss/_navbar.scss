@@ -43,5 +43,45 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 18px rgb(248, 190, 42, 0.8);
+  text-shadow: 0 0 18px rgba(247, 189, 41, 0.8);
+}
+
+.navbar-toggler {
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.navbar-collapse {
+  transition: max-height 0.35s ease, background-color 0.3s ease;
+  overflow: hidden;
+  max-height: 0; /* Collapsed state */
+}
+
+/* Default styling for larger screens */
+@media (min-width: 768px) {
+  .navbar-collapse {
+    max-height: none; /* Allow the navbar to expand fully on larger screens */
+    background-color: transparent; /* Default background color for larger screens */
+  }
+}
+
+/* Styling for small screens (mobile devices, tablets) */
+@media (max-width: 767px) {
+  .navbar-collapse.show {
+    max-height: 500px; /* Expanded state; adjust as needed */
+    background-color: transparent;
+    background: linear-gradient(
+      90deg,
+      rgb(249, 87, 42, 0.5),
+      rgba(255, 201, 5, 0.5)
+    ); /* Background color when expanded on small screens */
+  }
+
+  /* Optional: Adjust height if needed for better mobile experience */
+}
+
+/* Optional: Style the toggler icon */
+.navbar-toggler-icon {
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"%3E%3Cpath stroke="currentColor" stroke-width="2" d="M5 8h20M5 15h20M5 22h20" /%3E%3C/svg%3E');
 }

@@ -1,10 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/public/images/logo.png";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 function NavbarPage() {
-  const path = usePathname(); // Get the current path to determine active link
+  const [isOpen, setIsOpen] = useState(false);
+  const path = usePathname(); // Get the current path to determine the active link
+
+  const toggle = () => setIsOpen(!isOpen);
+
   return (
     <>
       <header>
@@ -17,16 +22,18 @@ function NavbarPage() {
             <button
               className="navbar-toggler"
               type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarTogglerDemo02"
               aria-controls="navbarTogglerDemo02"
-              aria-expanded="false"
+              aria-expanded={isOpen}
               aria-label="Toggle navigation"
+              onClick={toggle}
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse " id="navbarTogglerDemo02">
-              <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
+            <div
+              className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}
+              id="navbarTogglerDemo02"
+            >
+              <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <Link
                     className={`nav-link ${path === "/Meals" ? "active" : ""}`}
@@ -36,7 +43,6 @@ function NavbarPage() {
                     Browse Meals
                   </Link>
                 </li>
-                <div className=""></div>
                 <li className="nav-item">
                   <Link
                     className={`nav-link ${
